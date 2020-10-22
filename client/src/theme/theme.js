@@ -1,5 +1,6 @@
 export default {
     colors: { 
-        bgColor: 'white',
+        bgColor: '#dedae6',
+        fontColor: '#627082'
     }
 }
