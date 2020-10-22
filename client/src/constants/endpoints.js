@@ -1,0 +1,1 @@
+export const NBRB = 'https://www.nbrb.by/API/ExRates/Rates/Dynamics'

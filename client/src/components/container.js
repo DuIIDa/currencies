@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Container = styled.div`
     margin: 0 auto;
     max-width: 1140px;
-    min-height: 500px;
+    min-width: 700px;
     min-height: 100vh;
     padding: 10px 80px;
     background: ${props => props.theme.colors.bgColor};

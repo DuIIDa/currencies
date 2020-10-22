@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const TableContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end
+`
+
 export const TableBlock = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
@@ -7,10 +13,16 @@ export const TableBlock = styled.div`
     border: 4px double black;
 `
 
-export const TableDate = styled.div`
+export const TableFirstCell = styled.div`
+    grid-column-start: 1;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: 4px double black; 
+`
+
+export const TableItem = styled.div`
     width: 100%;
     text-align: center;
-    &:not(:last-child) {
-        border-right: 4px double black;
-    }
+    border: 4px double black;
 `

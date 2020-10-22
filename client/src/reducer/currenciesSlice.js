@@ -3,15 +3,19 @@ import { createSlice } from '@reduxjs/toolkit'
 const currenciesSlice = createSlice({
     name: 'currencies',
     initialState: {
-        data: ['111', '222', '333', '444', '555', '666', '777', '888',]
+        data: [],
+        dates: []
     },
 
-    reducer: {
-        getData(state) {
-            console.log('Запрос');
+    reducers: {
+        setData(state, action) {
+            state.data = action.payload
+        },
+        setDates(state, action) {
+            state.dates = action.payload
         }
     }
 })
 
 export default currenciesSlice.reducer
-export const {getData} = currenciesSlice.actions
+export const {setData, setDates} = currenciesSlice.actions
