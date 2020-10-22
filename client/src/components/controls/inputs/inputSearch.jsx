@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux'
 
-import {asyncSetData, setData} from '../../../actions/index'
+import {asyncSetData, searchData} from '../../../actions/index'
 
 import {Input} from './indexStyle'
 
@@ -19,8 +19,7 @@ export const Search = () => {
         }
         if(e.target.value !== ''){
             setsearchTimeout(setTimeout((value) => {
-                
-                dispatch(setData())
+                dispatch(searchData(value.toUpperCase()))
             }, 1000, e.target.value))
         }else {
             dispatch(asyncSetData())

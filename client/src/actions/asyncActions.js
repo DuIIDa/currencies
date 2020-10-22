@@ -1,5 +1,5 @@
 import {setData, setDates} from '../reducer/currenciesSlice'
-import {NBRB} from '../constants/endpoints'
+import {NBRB, CURRENCIES} from '../constants/index'
 
 export const asyncSetData = () => {
     return async dispatch => {
@@ -10,11 +10,11 @@ export const asyncSetData = () => {
             let tempDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()-6);
             let firstDate = `${tempDate.getFullYear()}-${tempDate.getMonth() + 1}-${tempDate.getDate()}`
 
-            let responseUSD = await fetch(`${NBRB}/145?startDate=${firstDate}&endDate=${secondDate}`)
+            let responseUSD = await fetch(`${NBRB}/${CURRENCIES.USD}?startDate=${firstDate}&endDate=${secondDate}`)
             responseUSD = await responseUSD.json()
-            let responseEUR = await fetch(`${NBRB}/292?startDate=${firstDate}&endDate=${secondDate}`)
+            let responseEUR = await fetch(`${NBRB}/${CURRENCIES.EUR}?startDate=${firstDate}&endDate=${secondDate}`)
             responseEUR = await responseEUR.json()
-            let responseRUR = await fetch(`${NBRB}/298?startDate=${firstDate}&endDate=${secondDate}`)
+            let responseRUR = await fetch(`${NBRB}/${CURRENCIES.RUR}?startDate=${firstDate}&endDate=${secondDate}`)
             responseRUR = await responseRUR.json()
 
             let data = [...responseUSD, ...responseEUR, ...responseRUR]
@@ -31,7 +31,7 @@ export const asyncSetData = () => {
     }
 }
 
-/*export const searchData = (value) => {
+export const searchData = (value) => {
     return async dispatch => {
         try {
             const date = new Date();
@@ -39,12 +39,22 @@ export const asyncSetData = () => {
             let tempDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()-6);
             let firstDate = `${tempDate.getFullYear()}-${tempDate.getMonth() + 1}-${tempDate.getDate()}`
 
-            let responseUSD = await fetch(`${NBRB}/145?startDate=${firstDate}&endDate=${secondDate}`)
-            responseUSD = await responseUSD.json()
-            let responseEUR = await fetch(`${NBRB}/292?startDate=${firstDate}&endDate=${secondDate}`)
-            responseEUR = await responseEUR.json()
-            let responseRUR = await fetch(`${NBRB}/298?startDate=${firstDate}&endDate=${secondDate}`)
-            responseRUR = await responseRUR.json()
+            let responseUSD = []
+            let responseEUR = []
+            let responseRUR = []
+
+            if('USD'.includes(value)) {
+                responseUSD = await fetch(`${NBRB}/145?startDate=${firstDate}&endDate=${secondDate}`)
+                responseUSD = await responseUSD.json()
+            }
+            if('EUR'.includes(value)) {
+                responseEUR = await fetch(`${NBRB}/292?startDate=${firstDate}&endDate=${secondDate}`)
+                responseEUR = await responseEUR.json()
+            }
+            if('RUR'.includes(value)) {
+                responseRUR = await fetch(`${NBRB}/298?startDate=${firstDate}&endDate=${secondDate}`)
+                responseRUR = await responseRUR.json()
+            }
 
             let data = [...responseUSD, ...responseEUR, ...responseRUR]
             
@@ -55,4 +65,4 @@ export const asyncSetData = () => {
             console.log('error: ', error);
         }
     }
-}*/
+}

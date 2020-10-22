@@ -21,25 +21,28 @@ export const Table = () => {
 
             <Search></Search>
 
+            {data.length ? 
             <TableBlock>
                 <TableFirstCell>Currencies\Date</TableFirstCell>
-                {
-                    dates.map((item, index) => <TableItem key={index}>{item.slice(0, 10)}</TableItem>)
-                }
+                    {
+                        dates.map((item, index) => <TableItem key={index}>{item.slice(0, 10)}</TableItem>)
+                    }
 
-                <TableFirstCell>USD</TableFirstCell>
-                {
-                    dataUSD.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
-                }
-                <TableFirstCell>EUR</TableFirstCell>
-                {
-                    dataEUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
-                }
-                <TableFirstCell>RUR</TableFirstCell>
-                {
-                    dataRUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
-                }
-            </TableBlock>
-        </TableContent>
+                    {dataUSD.length ? <TableFirstCell>USD</TableFirstCell> : null}
+                    {
+                        dataUSD.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                    }
+                    {dataEUR.length ? <TableFirstCell>EUR</TableFirstCell> : null}
+                    {
+                        dataEUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                    }
+                    {dataRUR.length ? <TableFirstCell>RUR</TableFirstCell> : null}
+                    {
+                        dataRUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                    }
+                </TableBlock>
+            :
+            <h3>Not found</h3>}
+        </TableContent> 
     )
 }
