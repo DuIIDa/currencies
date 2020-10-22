@@ -12,10 +12,24 @@ export const Table = () => {
     const showLoader = useSelector(state => state.loader.showLoader)
     const dates = useSelector(state => state.currencies.dates)
     const data = useSelector(state => state.currencies.data)
-    
-    const dataUSD = data.filter(item => item.Cur_ID === CURRENCIES.USD)
-    const dataEUR = data.filter(item => item.Cur_ID === CURRENCIES.EUR)
-    const dataRUR = data.filter(item => item.Cur_ID === CURRENCIES.RUR)
+
+    const displayData = (array, curr) => {
+        return array.filter(item => item.Cur_ID === curr)
+            .map(item => item.Cur_OfficialRate)
+            .map((item, index, arr) => {
+                if(item === Math.max(...arr)) {
+                    return <TableItem className='max' key={index}>{item}</TableItem>
+                }
+                if(item === Math.min(...arr)) {
+                    return <TableItem className='min' key={index}>{item}</TableItem>
+                }
+                return <TableItem key={index}>{item}</TableItem>
+            })
+    }
+
+    const dataUSD = displayData(data, CURRENCIES.USD);
+    const dataEUR = displayData(data, CURRENCIES.EUR);
+    const dataRUR = displayData(data, CURRENCIES.RUR);
 
 
     return  (
@@ -36,15 +50,15 @@ export const Table = () => {
             
                                 {dataUSD.length ? <TableFirstCell>USD</TableFirstCell> : null}
                                 {
-                                    dataUSD.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                                    dataUSD
                                 }
                                 {dataEUR.length ? <TableFirstCell>EUR</TableFirstCell> : null}
                                 {
-                                    dataEUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                                    dataEUR
                                 }
                                 {dataRUR.length ? <TableFirstCell>RUR</TableFirstCell> : null}
                                 {
-                                    dataRUR.map((item,index) => <TableItem key={index}>{item.Cur_OfficialRate}</TableItem>)
+                                    dataRUR
                                 }
                             </TableBlock>
                         :

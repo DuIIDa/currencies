@@ -25,4 +25,12 @@ export const TableItem = styled.div`
     width: 100%;
     text-align: center;
     border: 4px double black;
+
+    &.max {
+        color: red;
+    }
+
+    &.min{
+        color: green;
+    }
 `
