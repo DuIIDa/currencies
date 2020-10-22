@@ -1,9 +1,11 @@
 import {setData, setDates} from '../reducer/currenciesSlice'
+import {showLoader, hideLoader} from '../reducer/loaderSlice'
 import {NBRB, CURRENCIES} from '../constants/index'
 
 export const asyncSetData = () => {
     return async dispatch => {
         try {
+            dispatch(showLoader())
             const date = new Date();
             
             const secondDate =  `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -28,12 +30,16 @@ export const asyncSetData = () => {
         } catch (error) {
             console.log('error: ', error);
         }
+        finally {
+            dispatch(hideLoader())
+        }
     }
 }
 
 export const searchData = (value) => {
     return async dispatch => {
         try {
+            dispatch(showLoader())
             const date = new Date();
             const secondDate =  `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
             let tempDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()-6);
@@ -58,11 +64,13 @@ export const searchData = (value) => {
 
             let data = [...responseUSD, ...responseEUR, ...responseRUR]
             
-
             dispatch(setData(data))
             
         } catch (error) {
             console.log('error: ', error);
+        }
+        finally {
+            dispatch(hideLoader())
         }
     }
 }

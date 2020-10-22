@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import { ThemeProvider } from 'styled-components'
 import theme from './theme/theme'
@@ -10,6 +10,7 @@ import {Header} from './components/header/header'
 import {Table} from './components/table/table'
 
 import {asyncSetData} from './actions/index'
+
 
 
 function App() {
@@ -24,8 +25,8 @@ function App() {
           <GlobalStyle></GlobalStyle>
           <div className="App">
               <Container>
-                  <Header></Header>
-                  <Table></Table>
+                    <Header></Header>
+                    <Table></Table>
               </Container>
           </div>
       </ThemeProvider>
