@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 import { ThemeProvider } from 'styled-components'
 import theme from './theme/theme'
@@ -8,6 +8,7 @@ import Container from './components/container'
 
 import {Header} from './components/header/header'
 import {Table} from './components/table/table'
+import {MyChart} from './components/chart/chart'
 
 import {asyncSetData} from './actions/index'
 
@@ -27,6 +28,7 @@ function App() {
               <Container>
                     <Header></Header>
                     <Table></Table>
+                    <MyChart></MyChart>
               </Container>
           </div>
       </ThemeProvider>
